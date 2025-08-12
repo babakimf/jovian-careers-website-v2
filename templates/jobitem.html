@@ -8,6 +8,6 @@
     </div>
     <div class="col-2">
         <!-- <button type="button" class="btn btn-outline-primary">Apply</button> -->
-        <a class = "btn btn-outline-primary" href="mailto:bkmhmd@yahoo.com?subject=Apply%20to%20{{job['title']}}&body=%3CYour%20Name%3E%0D%0A%3CYour%20Request%3E" >Apply</a>
+        <a class = "btn btn-outline-primary" href="{{url_for('show_job', id = job['id'])}}" >Apply</a>
     </div>
 </div>

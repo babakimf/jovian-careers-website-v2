@@ -9,11 +9,18 @@ DATABASE_URL = os.getenv("DATABASE_URL")
 
 engine = create_engine(DATABASE_URL)
 
-def load_jobs_from_db():
+def load_jobs_from_db(): 
   with engine.connect() as conn:
     res = conn.execute(text("SELECT * FROM jobs"))
     jobs = []
     for row in res.all():
         jobs.append(row._asdict())
     return jobs
+  
+def load_job_from_db(job_id):
+  with engine.connect() as conn:
+    jobs = list(conn.execute(text("SELECT * FROM jobs WHERE id = :job_id"), {"job_id": job_id}))
+    if len(jobs) == 0:
+        return None
+    return jobs[0]._asdict()
         
